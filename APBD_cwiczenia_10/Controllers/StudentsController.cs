@@ -20,7 +20,7 @@ namespace APBD_cwiczenia_10.Controllers
         public IConfiguration Configuration { get; set; }
 
         private readonly IDbService _service;
-        public StudentsController(Services.IDbService service)
+        public StudentsController(IDbService service)
         {
             _service = service;
         }
