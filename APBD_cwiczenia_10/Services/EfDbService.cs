@@ -27,7 +27,10 @@ namespace APBD_cwiczenia_10.Services
         {
            Student s = (from student in _context.Student 
                         where student.IndexNumber == index 
-                        select student).First();
+                        select student).FirstOrDefault();
+
+            if (s == null)
+                throw new Exception("Nie ma takiego studenta");
 
 
                 if(request.FirstName != null)
@@ -36,7 +39,7 @@ namespace APBD_cwiczenia_10.Services
                 if (request.LastName != null)
                     s.LastName = request.LastName;
 
-                if (request.IdEnrollment != null)
+                if (request.IdEnrollment != null && request.IdEnrollment >0)
                     s.IdEnrollment = request.IdEnrollment;
 
                 if (request.Password != null)

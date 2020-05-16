@@ -38,15 +38,18 @@ namespace APBD_cwiczenia_10.Controllers
         [HttpPut("{index}")]
         public IActionResult UpdateStudnet(UpdateStudentRequest request, string index)  // aktualizacja studenta
         {
-          
+          try
+            {
             var student = _service.UpdateStudent(index, request);
+            return Ok(student);
+            }
+            catch(Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
 
-           if (student != null)
-              return Ok(student);
 
-
-
-            return NotFound("index not found");
+            
         }
 
         [HttpDelete("{index}")]
